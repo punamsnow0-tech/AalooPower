@@ -1,0 +1,4 @@
+name: AalooPower
+version: 1.0
+main: com.yourname.aaloo.AalooPower
+api-version: "1.21"
