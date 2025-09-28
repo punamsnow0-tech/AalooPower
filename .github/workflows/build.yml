@@ -20,21 +20,14 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      # 3️⃣ Get commit info
-      - name: Get commit info
-        id: vars
-        run: |
-          echo "COMMIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-          echo "COMMIT_AUTHOR=$(git log -1 --pretty=format:'%an')" >> $GITHUB_ENV
-
-      # 4️⃣ Build with Maven
+      # 3️⃣ Build with Maven
       - name: Build with Maven
         run: mvn clean package -DskipTests
         working-directory: .
 
-      # 5️⃣ Upload jar artifact with commit info in name
+      # 4️⃣ Upload jar artifact
       - name: Upload Jar Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: AalooPower-${{ env.COMMIT_SHA }}-${{ env.COMMIT_AUTHOR }}
+          name: AalooPower-jar
           path: target/*.jar
